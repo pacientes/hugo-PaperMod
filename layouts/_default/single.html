@@ -12,7 +12,8 @@
     {{- if not (.Param "hideMeta") }}
     <div class="post-meta">
       {{- partial "post_meta.html" . -}}
-      {{- if .IsTranslated -}}&nbsp;|&nbsp;
+      {{- if .IsTranslated -}}
+      {{- if or .Params.author $.Site.Params.author (.Param "ShowReadingTime") (not .Date.IsZero) }}&nbsp;|&nbsp;{{- end -}}
       <ul class="i18n_list">
         {{- i18n "translations" | default "Translations"}}:
         {{- range .Translations }}
@@ -31,7 +32,7 @@
     </div>
     {{- end}}
   </header>
-  {{- $isHidden := ((.Site.Params.cover.hidden | default .Site.Params.cover.hiddenInSingle) | default .Params.cover.hidden )}}
+  {{- $isHidden := .Params.cover.hidden | default .Site.Params.cover.hiddenInSingle | default .Site.Params.cover.hidden}}
   {{- partial "cover.html" (dict "cxt" . "IsHome" false "isHidden" $isHidden) }}
   {{- if (.Param "ShowToc") }}
   <div class="toc">
@@ -39,9 +40,9 @@
       <summary accesskey="c" title="(Alt + C)">
         <div class="details">{{- i18n "toc" | default "Table of Contents" }}</div>
       </summary>
-      <blockquote>
+      <div class="inner">
         {{- partial "toc.html" . }}
-      </blockquote>
+      </div>
     </details>
   </div>
   {{- end }}
