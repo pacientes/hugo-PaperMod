@@ -245,10 +245,15 @@
 }
 
 .toc {
-    margin-bottom: 40px;
+    margin: 0 2px 40px 2px;
     border: 1px solid var(--border);
+    background: var(--code-bg);
     border-radius: var(--radius);
     padding: .4em
+}
+
+.dark .toc {
+    background: var(--entry);
 }
 
 .toc details summary {
@@ -289,9 +294,11 @@
 }
 
 .post-tags a,
-.share-buttons {
-    border: 1px solid var(--tertiary);
-    border-radius: var(--radius)
+.share-buttons,
+.paginav {
+    border-radius: var(--radius);
+    background: var(--code-bg);
+    border: 1px solid var(--border)
 }
 
 .post-tags a {
@@ -304,14 +311,16 @@
     background: var(--code-bg)
 }
 
-.post-tags a:hover {
+.post-tags a:hover,
+.paginav a:hover {
     background: var(--border)
 }
 
 .share-buttons {
-    margin-top: var(--gap);
+    margin: 14px 0;
     padding-inline-start: var(--radius);
     display: flex;
+    justify-content: center;
     overflow-x: auto
 }
 
@@ -366,4 +375,42 @@ h6:hover .anchor {
 
 .post-content table::-webkit-scrollbar-thumb {
     border-width: 2px;
+}
+
+.paginav {
+    margin: 10px 0;
+    display: flex;
+    line-height: 30px;
+    border-radius: var(--radius);
+}
+
+.paginav a {
+    padding-inline-start: 14px;
+    padding-inline-end: 14px;
+    border-radius: var(--radius);
+}
+
+.paginav .title {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: small;
+    color: var(--secondary);
+}
+
+.paginav .prev,
+.paginav .next {
+    width: 50%;
+}
+
+.paginav span:hover:not(.title) {
+    box-shadow: 0 1px 0;
+}
+
+.paginav .next {
+    margin-inline-start: auto;
+    text-align: right;
+}
+
+[dir="rtl"] .paginav .next {
+    text-align: left;
 }
