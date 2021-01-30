@@ -14,12 +14,9 @@ function loadSearch() {
                 if (data) {
                     // fuse.js options; check fuse.js website for details
                     var options = {
-                        isCaseSensitive: false,
-                        shouldSort: true,
-                        location: 0,
                         distance: 100,
                         threshold: 0.4,
-                        minMatchCharLength: 0,
+                        ignoreLocation: true,
                         keys: [
                             'title',
                             'permalink',
@@ -52,7 +49,7 @@ function activeToggle() {
 sInput.onkeyup = function (e) {
     // run a search query (for "term") every time a letter is typed
     // in the search box
-    const results = fuse.search(this.value); // the actual query being run using fuse.js
+    const results = fuse.search(this.value.trim()); // the actual query being run using fuse.js
 
     if (results.length !== 0) {
         // build our html if result exists
